@@ -2,6 +2,15 @@
 import DecoratoryPill from '../components/ui/Pill.astro';
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/ui/Button.astro';
+import * as prismic from '@prismicio/client';
+
+import { getSingleDoc } from '../lib/prismic';
+
+const home = await getSingleDoc('home');
+const { homepage_title } = home.data;
+const homepageTitleText = prismic.asText(homepage_title);
+
+console.log(home)
 ---
 
 <Layout>
@@ -10,7 +19,7 @@ import Button from '../components/ui/Button.astro';
   <DecoratoryPill text="America's #1 Ranked" />
 	<!-- can make </H1> a component too -->
   <h1 class=" text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-    Speech & Debate Classes for <span class="text-[#7B1C3E] italic">Ambitious</span> Students
+    {homepageTitleText}
   </h1>
 
   <p class=" mx-auto max-w-2xl text-lg leading-8 text-gray-600">

@@ -456,6 +456,13 @@
   resolved "https://registry.npmjs.org/@oslojs/encoding/-/encoding-1.1.0.tgz#55f3d9a597430a01f2a5ef63c6b42f769f9ce34e"
   integrity sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==
 
+"@prismicio/client@^7.21.8":
+  version "7.21.8"
+  resolved "https://registry.npmjs.org/@prismicio/client/-/client-7.21.8.tgz#d20ab0ed92e59361fa4716d0457f32cce78ac616"
+  integrity sha512-HFXrV/XdbVy/AL7V5K/976gr4SEa7WA7xuZuSNuseLK5VSl0DlMSgy7GTUk+ngjz9QvN0Xu3nxWzUGFxnD8RIA==
+  dependencies:
+    imgix-url-builder "^0.0.6"
+
 "@rollup/pluginutils@^5.3.0":
   version "5.3.0"
   resolved "https://registry.npmjs.org/@rollup/pluginutils/-/pluginutils-5.3.0.tgz#57ba1b0cbda8e7a3c597a4853c807b156e21a7b4"
@@ -1395,6 +1402,11 @@ http-cache-semantics@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.2.0.tgz#205f4db64f8562b76a4ff9235aa5279839a09dd5"
   integrity sha512-dTxcvPXqPvXBQpq5dUr6mEMJX4oIEFv6bwom3FDwKRDsuIjjJGANqhBuoAn9c1RQJIdAKav33ED65E2ys+87QQ==
+
+imgix-url-builder@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.npmjs.org/imgix-url-builder/-/imgix-url-builder-0.0.6.tgz#5bed6f1a0969f6f3ad91fa876f1c7c39071a0823"
+  integrity sha512-lFVbvaE9vMck8qz9j+y6o7vsyc1vZhdqzWu+Wp/nlnOCi9zAErc31QMkZKYUGMNLLzxOO4YIBAUPndTPah8HFg==
 
 iron-webcrypto@^1.2.1:
   version "1.2.1"
