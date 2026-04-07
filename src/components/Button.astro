@@ -1,0 +1,85 @@
+---
+const {
+	href,
+	variant = 'primary',
+	size = 'md',
+	fullWidth = false,
+	class: className = '',
+	type = 'button',
+	disabled = false,
+	...rest
+} = Astro.props;
+
+const baseClasses =
+	'inline-flex items-center justify-center font-semibold tracking-wide rounded-lg relative transition-all duration-100 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed';
+
+const variantClasses = {
+	primary: `
+bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)]
+border-[1.6px] border-[var(--btn-primary-border)]
+shadow-[3px_3px_0_var(--btn-primary-shadow)]
+
+hover:bg-[var(--btn-primary-hover)]
+
+active:top-[3px] active:left-[3px]
+active:shadow-none
+active:bg-[var(--btn-primary-active)]
+
+focus-visible:ring-[var(--btn-primary-border)]
+
+disabled:bg-[var(--btn-disabled-bg)]
+disabled:text-[var(--btn-disabled-text)]
+disabled:border-[var(--btn-disabled-bg)]
+disabled:shadow-[3px_3px_0_var(--btn-disabled-bg)]
+disabled:top-0 disabled:left-0
+`,
+
+	secondary: `
+bg-[var(--btn-secondary-bg)] text-[var(--btn-secondary-text)]
+border-[1.6px] border-[var(--btn-secondary-border)]
+shadow-[3px_3px_0_var(--btn-secondary-shadow)]
+
+hover:bg-[var(--btn-secondary-hover)]
+
+active:top-[3px] active:left-[3px]
+active:shadow-none
+active:bg-[var(--btn-secondary-active)]
+
+focus-visible:ring-[var(--btn-secondary-border)]
+
+disabled:bg-[var(--btn-disabled-bg)]
+disabled:text-[var(--btn-disabled-text)]
+disabled:border-[var(--btn-disabled-bg)]
+disabled:shadow-[3px_3px_0_var(--btn-disabled-bg)]
+disabled:top-0 disabled:left-0
+`
+};
+
+const sizeClasses = {
+	sm: 'p-3 text-sm',
+	md: 'p-3 text-sm',
+	lg: 'p-3 text-base'
+};
+
+const currentVariant = typeof variant === 'string' && variant in variantClasses ? (variant as keyof typeof variantClasses) : 'primary'; const currentSize = typeof size === 'string' && size in sizeClasses ? (size as keyof typeof sizeClasses) : 'md'; const classes = [ baseClasses, variantClasses[currentVariant], sizeClasses[currentSize], fullWidth ? 'w-full' : '', disabled ? 'opacity-60' : '', className ]
+	.filter(Boolean)
+	.join(' ');
+---
+
+{
+	href ? (
+		<a
+			href={disabled ? undefined : href}
+			class={classes}
+			aria-disabled={disabled ? 'true' : undefined}
+			tabindex={disabled ? -1 : undefined}
+			{...rest}
+		>
+			<slot />
+		</a>
+	) : (
+		<button type={type} class={classes} disabled={disabled} {...rest}>
+			<slot />
+		</button>
+	)
+}

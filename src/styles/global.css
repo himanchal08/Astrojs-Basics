@@ -1,0 +1,58 @@
+@import "tailwindcss";
+:root {
+  /* PRIMARY */
+  --color-crimson: #8f212c;
+  --color-gold: #c8aa72;
+
+  /* SUB-BRAND */
+  --color-midnight: #0b2648;
+  --color-iron: #39264d;
+  --color-espresso: #5e4c46;
+  --color-grove: #2b573b;
+  --color-teal: #005f74;
+
+  /* NEUTRALS */
+  --color-charcoal: #410500;
+  --color-ivory: #faf4f3;
+  --color-stone: #928579;
+  --color-parchment: #f0e4d0;
+  --color-slate: #605f6e;
+
+  /* HIGHLIGHTS */
+  --color-blue: #006dae;
+  --color-mint: #7dbcb1;
+  --color-coral: #f25a48;
+  --color-violet: #aa85b3;
+  --color-goldenrod: #f2c97a;
+
+  /* Primary Button */
+  --btn-primary-bg: #8e121c;
+  --btn-primary-border: #410500;
+  --btn-primary-shadow: #410500;
+
+  --btn-primary-hover: #7a0f18;
+  --btn-primary-active: #5e0c12;
+
+  --btn-primary-text: #ffffff;
+
+  --btn-disabled-bg: #928579;
+  --btn-disabled-text: #faf4f3;
+
+  /* Secondary Button */
+  --btn-secondary-bg: #f6f0ef;
+  --btn-secondary-border: #410500;
+  --btn-secondary-shadow: #410500;
+
+  --btn-secondary-hover: #efe6e4;
+  --btn-secondary-active: #d8c9c5;
+
+  --btn-secondary-text: #410500;
+
+  --btn-disabled-bg: #928579;
+  --btn-disabled-text: #faf4f3;
+
+  /* Decorative Pill */
+  --pill-color-bg: #aae1d8;
+  --pill-color-text: #410500;
+  
+}

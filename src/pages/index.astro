@@ -1,0 +1,31 @@
+---
+import DecoratoryPill from '../components/DecoratoryPill.astro';
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout>
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-8">
+
+  <DecoratoryPill text="America's #1 Ranked" />
+
+  <h1 class=" text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+    Speech & Debate Classes for <span class="text-[#7B1C3E] italic">Ambitious</span> Students
+  </h1>
+
+  <p class=" mx-auto max-w-2xl text-lg leading-8 text-gray-600">
+    Wherever you are, your debate journey starts at Civic Debate Academy—
+    with expert instruction and a proven path to success.
+  </p>
+
+  <div class=" flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+    <Button href="#" variant="primary" size="sm" class="px-6 uppercase tracking-wider">
+      Schedule a Consultation
+    </Button>
+    <Button href="#" variant="secondary" size="sm" class="px-6 uppercase tracking-wider">
+      View Our Class Schedule
+    </Button>
+  </div>
+
+</section>
+</Layout>
