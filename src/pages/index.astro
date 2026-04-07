@@ -4,11 +4,34 @@ import Layout from '../layouts/Layout.astro';
 import Button from '../components/ui/Button.astro';
 import * as prismic from '@prismicio/client';
 import IvyleagueCard from '../components/ui/IvyleagueCard.astro';
+import FAQ from '../components/structure/FAQ.astro';
 
 import { getSingleDoc } from '../lib/prismic';
 
 const home = await getSingleDoc('home');
 const data = home.data;
+const faqItems = [
+  {
+    question: 'How do online classes work?',
+    answer:
+      'Classes run live with expert coaches, small groups, and guided practice rounds. Students get structured feedback each week.'
+  },
+  {
+    question: 'Which age groups can join Civic Debate Academy?',
+    answer:
+      'Programs are available for middle school and high school students, with track placement based on experience level.'
+  },
+  {
+    question: 'Do you help with tournament preparation?',
+    answer:
+      'Yes. We train students for case strategy, rebuttals, cross-examination, and confidence under real tournament timing.'
+  },
+  {
+    question: 'Need help choosing the right class?',
+    answer: 'Our team can recommend the right starting path for your student. CLICK HERE to schedule a free placement call.',
+    highlighted: true
+  }
+];
 ---
 
 <Layout>
@@ -48,5 +71,9 @@ const data = home.data;
 />
 </div>
 
+</section>
+
+<section class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+  <FAQ pill="Common Questions" title="FAQs From Parents & Students" items={faqItems} />
 </section>
 </Layout>
