@@ -12,9 +12,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^5.0.3",
     "@prismicio/client": "^7.21.8",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.4",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "tailwindcss": "^4.2.2"
   }
 }

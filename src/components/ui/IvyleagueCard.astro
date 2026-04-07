@@ -1,0 +1,64 @@
+---
+interface Props {
+  title: string
+  description: string
+  logos: { src: string; alt: string }[]
+}
+
+const { title, description, logos } = Astro.props
+---
+
+<div class="w-135 h-65 flex gap-6  overflow-hidden rounded-xl border border-(--color-crimson) bg-(--color-parchment) p-6">
+
+  <div class="flex flex-col gap-4 item-start justify-items-start">
+    <h2 class="text-2xl font-bold text-(--color-charcoal)">{title}</h2>
+    <p class="text-base text-left leading-7 text-(--color-slate)">{description}</p>
+  </div>
+
+  <div class="marquee-vertical-container w-40 shrink-0 overflow-hidden">
+    {logos.map((logo) => (
+      <div class="university-item">
+        <div class="flex h-20 items-center justify-center rounded-lg border border-(--color-stone) bg-(--color-ivory) px-4 py-3">
+          <img src={logo.src} alt={logo.alt} class="h-10 w-full object-contain" />
+        </div>
+      </div>
+    ))}
+  </div>
+
+</div>
+
+<script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const container = document.querySelector(".marquee-vertical-container");
+      const items = [...container?.querySelectorAll(".university-item") ?? []];
+      if (!items.length || !container) return;
+
+      container.innerHTML = "";
+
+      const track = document.createElement("div");
+      
+      // Add Tailwind classes for layout
+      track.classList.add("flex", "flex-col", "gap-3", "w-full");
+      
+      // Inline the animation directly so scoping doesn't block it
+      track.style.animation = "scrollUp 8s linear infinite";
+
+      [...items, ...items].forEach(item => track.appendChild(item.cloneNode(true)));
+
+      container.appendChild(track);
+    }, 500);
+  });
+</script>
+
+<style is:global>
+  .marquee-vertical-container {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+
+  @keyframes scrollUp {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
+  }
+</style>

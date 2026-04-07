@@ -3,14 +3,12 @@ import DecoratoryPill from '../components/ui/Pill.astro';
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/ui/Button.astro';
 import * as prismic from '@prismicio/client';
+import IvyleagueCard from '../components/ui/IvyleagueCard.astro';
 
 import { getSingleDoc } from '../lib/prismic';
 
 const home = await getSingleDoc('home');
-const { homepage_title } = home.data;
-const homepageTitleText = prismic.asText(homepage_title);
-
-console.log(home)
+const data = home.data;
 ---
 
 <Layout>
@@ -19,12 +17,13 @@ console.log(home)
   <DecoratoryPill text="America's #1 Ranked" />
 	<!-- can make </H1> a component too -->
   <h1 class=" text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-    {homepageTitleText}
+    <span>{prismic.asText(data.homepage_title_before)} </span>
+    <span class="text-[#7B1C3E] italic">{prismic.asText(data.homepage_title_highlited)}</span>
+    <span> {prismic.asText(data.homepage_title_after)}</span>
   </h1>
 
   <p class=" mx-auto max-w-2xl text-lg leading-8 text-gray-600">
-    Wherever you are, your debate journey starts at Civic Debate Academy—
-    with expert instruction and a proven path to success.
+    {prismic.asText(data.lead_para)}
   </p>
 
   <div class=" flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -34,7 +33,20 @@ console.log(home)
     <Button href="#" variant="secondary" size="sm" class="px-6 uppercase tracking-wider">
       View Our Class Schedule
     </Button>
-  </div>
+  </div >
+
+  <div >
+  <IvyleagueCard
+  title="Ivy League Success"
+  description="Our students are consistently accepted to top-tier universities. Debate has proven to be one of the strongest predictors of college admissions, showcasing critical thinking, communication skills, and leadership that top schools value."
+  logos={[
+    { src: "/logos/harvard.png", alt: "Harvard University" },
+    { src: "/logos/chicago.png", alt: "The University of Chicago" },
+    { src: "/logos/princeton.png", alt: "Princeton University" },
+    { src: "/logos/vanderbilt.png", alt: "Vanderbilt University" },
+  ]}
+/>
+</div>
 
 </section>
 </Layout>
