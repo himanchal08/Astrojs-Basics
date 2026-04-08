@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string
+  description: string
+  index?: number
+}
+
+const { title, description, index = 0 } = Astro.props
+---
+
+<div
+  class="feature-card w-full rounded-2xl border border-(--color-stone)/30 bg-(--color-ivory) px-8 py-7 shadow-sm"
+  data-index={index}
+>
+  <h3 class="text-lg font-bold text-(--color-crimson)">{title}</h3>
+  <p class="mt-3 text-sm leading-6 text-(--color-slate)">{description}</p>
+</div>

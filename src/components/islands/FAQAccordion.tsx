@@ -27,16 +27,14 @@ export default function FAQAccordion({ items = [] }: FAQAccordionProps) {
 						<button
 							type="button"
 							onClick={() => setOpenIndex(isOpen ? -1 : index)}
-							className="flex w-full items-center justify-between gap-4 text-left"
+							className="flex w-full items-center justify-between gap-4 text-left bg-red-500"
 							aria-expanded={isOpen}
 						>
 							<p className="font-semibold text-(--color-charcoal)">{item.question}</p>
 							<span
-								className={`inline-flex h-7 w-7 items-center justify-center rounded-full border border-(--color-charcoal) text-sm text-(--color-charcoal) transition-transform duration-300 ${
-									isOpen ? 'rotate-45 bg-(--pill-color-bg)' : 'rotate-0'
-								}`}
+								className={`inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-(--color-charcoal) text-sm text-(--color-charcoal) transition-transform duration-300 box-shadow-[0_3px_0_green]`}
 							>
-								+
+								
 							</span>
 						</button>
 

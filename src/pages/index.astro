@@ -8,6 +8,31 @@ import FAQ from '../components/structure/FAQ.astro';
 
 import { getSingleDoc } from '../lib/prismic';
 
+import StackingCards from '../components/islands/StackingCard';
+
+const cards = [
+  {
+    title: "Drill Sessions & Lectures Weekly",
+    description: "In addition to weekly classes, students will engage in practice and small seminar-style learning sessions focusing on collapsing, weighing, and more!",
+  },
+  {
+    title: "90-Minute Weekly Classes",
+    description: "Our weekly 90-minute classes are the core of the NDC program. Taught by the same teacher all season, each group is kept to four to six students.",
+  },
+  {
+    title: "No Tournament Upcharges",
+    description: "We provide tournament services at cost, meaning we do not profit from competitions. Online tournaments range from $125–$200, in-person from $750–$1500.",
+  },
+  {
+    title: "All Team Practices (New)",
+    description: "Bi-weekly sessions open to every NDC member. Large-format sessions designed to build team cohesion with a 6:1 student-to-coach ratio.",
+  },
+  {
+    title: "Smallest Student to Teacher Ratio",
+    description: "Each group is kept to four to six students maximum, ensuring every debater gets real, individualized feedback on their performance.",
+  },
+];
+
 const home = await getSingleDoc('home');
 const data = home.data;
 const faqItems = [
@@ -47,6 +72,7 @@ const faqItems = [
 
   <p class=" mx-auto max-w-2xl text-lg leading-8 text-gray-600">
     {prismic.asText(data.lead_para)}
+    
   </p>
 
   <div class=" flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -70,10 +96,34 @@ const faqItems = [
   ]}
 />
 </div>
+<div>
+{prismic.asText(data.section_h2)}
+</div>
 
 </section>
 
 <section class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
   <FAQ pill="Common Questions" title="FAQs From Parents & Students" items={faqItems} />
+</section>
+
+<section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+  <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
+
+    <div class="flex flex-col justify-start pt-4 lg:sticky lg:top-24 lg:self-start">
+      <h2 class="text-4xl font-bold leading-tight text-(--color-charcoal)">
+        A Tailored Program to Make Top Debate Champions.
+      </h2>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button href="#" variant="primary" size="sm" class="px-6 uppercase tracking-wider">
+          Schedule a Consultation
+        </Button>
+        <Button href="#" variant="secondary" size="sm" class="px-6 uppercase tracking-wider">
+          View Our Class Schedule
+        </Button>
+      </div>
+    </div>
+    <StackingCards client:load cards={cards} />
+
+  </div>
 </section>
 </Layout>
