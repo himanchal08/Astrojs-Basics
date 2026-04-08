@@ -1,0 +1,65 @@
+---
+import { client } from '../../lib/prismic'
+import * as prismic from '@prismicio/client'
+
+export async function getStaticPaths() {
+  const posts = await client.getAllByType('blog_page')
+
+  const seen = new Set<string>()
+  const paths: Array<{ params: { uid: string }; props: { post: (typeof posts)[number] } }> = []
+
+  for (const post of posts) {
+    const candidates = [post.uid, ...(post.slugs ?? [])].filter(
+      (value): value is string => Boolean(value),
+    )
+
+    for (const candidate of candidates) {
+      if (seen.has(candidate)) continue
+      seen.add(candidate)
+      paths.push({
+        params: { uid: candidate },
+        props: { post },
+      })
+    }
+  }
+
+  return paths
+}
+
+const { post } = Astro.props
+
+if (!post?.data) {
+  throw new Error('Missing blog post data. Ensure the Prismic document is published and has UID.')
+}
+
+const asSafeText = (field: unknown) => {
+  if (typeof field === 'string') return field
+  if (Array.isArray(field)) return prismic.asText(field as prismic.RichTextField) ?? ''
+  return ''
+}
+
+const asSafeHTML = (field: unknown) => {
+  if (Array.isArray(field)) return prismic.asHTML(field as prismic.RichTextField) ?? ''
+  return ''
+}
+
+const { title, content, cover_image, meta_description, publish_date, published_date } = post.data
+const displayDate = publish_date ?? published_date
+---
+
+<html>
+  <head>
+    <title>{asSafeText(title)}</title>
+    <meta name="description" content={typeof meta_description === 'string' ? meta_description : ''} />
+  </head>
+  <body>
+    <article>
+      <h1>{asSafeText(title)}</h1>
+      {displayDate && <p>{String(displayDate)}</p>}
+      {cover_image?.url && (
+        <img src={cover_image.url} alt={cover_image.alt} />
+      )}
+      <div set:html={asSafeHTML(content)} />
+    </article>
+  </body>
+</html>

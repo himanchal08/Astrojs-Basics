@@ -1,0 +1,32 @@
+---
+import { client } from '../../lib/prismic'
+import * as prismic from '@prismicio/client'
+
+const posts = await client.getAllByType('blog_page')
+
+const asSafeText = (field: unknown) => {
+  if (typeof field === 'string') return field
+  if (Array.isArray(field)) return prismic.asText(field as prismic.RichTextField) ?? ''
+  return ''
+}
+---
+
+<html>
+  <head>
+    <title>Blog</title>
+    <meta name="description" content="Latest posts from our debate academy." />
+  </head>
+  <body>
+    <main>
+      <h1>Blog</h1>
+      <ul>
+        {posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.uid}`}>{asSafeText(post.data.title)}</a>
+            {post.data.publish_date && <p>{String(post.data.publish_date)}</p>}
+          </li>
+        ))}
+      </ul>
+    </main>
+  </body>
+</html>
